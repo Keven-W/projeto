@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="/vite.svg">
+  <title>Interactive Four Seasons Webpage</title>
+  <link rel="shortcut icon" href="imagem/favicon.ico" type="imagem/icon">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <div class="sidebar">
+      <button class="season-button" data-season="spring" aria-label="Primavera">
+        🍃
+      </button>
+      <button class="season-button" data-season="summer" aria-label="Verão">
+        ☀️
+      </button>
+      <button class="season-button" data-season="autumn" aria-label="Outono">
+        🍂
+      </button>
+      <button class="season-button" data-season="winter" aria-label="Inverno">
+        ❄️
+      </button>
+    </div>
+
+    <div class="content">
+      <div id="winter-snowman" class="snowman hidden"></div>
+      <div class="season-info">
+        <h1 class="season-name"></h1>
+        <p class="season-description"></p>
+      </div>
+      <div class="animation-container"></div>
+    </div>
+  </div>
+
+  <script src="js/data/seasons.js"></script>
+  <script src="js/animations/spring.js"></script>
+  <script src="js/animations/summer.js"></script>
+  <script src="js/animations/autumn.js"></script>
+  <script src="js/animations/winter.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,279 @@
+:root {
+    /* Color system */
+    --spring-color: #ff7eb9;
+    --spring-bg: #f8ffd6;
+    --summer-color: #ffbe0b;
+    --summer-bg: #fff1d0;
+    --autumn-color: #fb8500;
+    --autumn-bg: #ffefcf;
+    --winter-color: #8ecae6;
+    --winter-bg: #d9eeff;
+    --winter-bg-dark: #c5e3ff;
+    
+    --text-dark: #333333;
+    --text-light: #ffffff;
+    --bg-white: #ffffff;
+    --bg-transparent: rgba(255, 255, 255, 0.8);
+    
+    /* Spacing system (based on 8px) */
+    --space-1: 8px;
+    --space-2: 16px;
+    --space-3: 24px;
+    --space-4: 32px;
+    --space-5: 40px;
+    --space-6: 48px;
+    
+    /* Animation durations */
+    --transition-fast: 200ms;
+    --transition-medium: 300ms;
+    --transition-slow: 500ms;
+  
+    /* Current season */
+    --current-color: var(--spring-color);
+    --current-bg: var(--spring-bg);
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--current-bg);
+    color: var(--text-dark);
+    line-height: 1.5;
+    min-height: 100vh;
+    transition: background-color var(--transition-medium) ease;
+  }
+  
+  .container {
+    display: flex;
+    min-height: 100vh;
+  }
+  
+  /* Sidebar styles */
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(177 177 177 / 80%);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 10;
+    padding: var(--space-2) 0;
+  }
+  
+  .season-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    margin-bottom: var(--space-3);
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-medium) ease;
+    color: var(--text-dark);
+    font-size: 24px;
+  }
+  
+  .season-button:hover {
+    background-color: var(--bg-white);
+    transform: scale(1.05);
+  }
+  
+  .season-button.active {
+    background-color: var(--bg-white);
+    color: var(--current-color);
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Content styles */
+  .content {
+    flex: 1;
+    padding: var(--space-5);
+    margin-left: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .snowman {
+    position: absolute;
+    top: var(--space-4);
+    right: var(--space-4);
+    font-size: 48px;
+    transform: scaleX(-1);
+    opacity: 0;
+    transition: opacity var(--transition-medium) ease;
+  }
+  
+  .snowman.visible {
+    opacity: 1;
+  }
+  
+  .season-info {
+    position: relative;
+    max-width: 800px;
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: var(--space-4);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    z-index: 5;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity var(--transition-medium) ease, transform var(--transition-medium) ease;
+  }
+  
+  .season-info.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .season-name {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: var(--space-3);
+    color: var(--current-color);
+    transition: color var(--transition-medium) ease;
+  }
+  
+  .season-description {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  .animation-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+  }
+  
+  /* Animation keyframes */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes bloomFlower {
+    0% { 
+      opacity: 0; 
+      transform: scale(0.2); 
+    }
+    100% { 
+      opacity: 1; 
+      transform: scale(1); 
+    }
+  }
+  
+  @keyframes growSun {
+    0% { 
+      opacity: 0; 
+      width: 0; 
+      height: 0; 
+    }
+    100% { 
+      opacity: 1; 
+      width: 120px; 
+      height: 120px; 
+    }
+  }
+  
+  @keyframes fallLeaf {
+    0% {
+      transform: translateY(-20px) rotate(0deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100vh) rotate(360deg);
+      opacity: 0.7;
+    }
+  }
+  
+  @keyframes snowfall {
+    0% {
+      transform: translateY(0) translateX(0);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.8;
+    }
+    100% {
+      transform: translateY(100vh) translateX(20px);
+      opacity: 0;
+    }
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+    }
+    
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: auto;
+      bottom: 0;
+      width: 100%;
+      height: 80px;
+      flex-direction: row;
+      justify-content: space-around;
+      padding: var(--space-1) 0;
+    
+    }
+    
+    .season-button {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 0;
+      margin-right: var(--space-1);
+    }
+    
+    .season-button:last-child {
+      margin-right: 0;
+    }
+    
+    .content {
+      margin-left: 0;
+      margin-bottom: 80px;
+      padding: var(--space-3);
+    }
+    
+    .season-name {
+      font-size: 2.5rem;
+    }
+    
+    .season-info {
+      padding: var(--space-3);
+    }
+  
+    .snowman {
+      top: var(--space-2);
+      right: var(--space-2);
+      font-size: 36px;
+    }
+  }
